@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Prototype</title>
+</head>
+<body>
+<script>
+//empty an array
+var ary=[23,56,'a',false,57];
+function emptyAry(x){
+ //x=[];
+ //x="";
+ for(i=0;i<x.length;i++){
+   x.pop();
+   i--;
+ }
+
+ console.log(x);
+  console.dir(x);
+}
+
+ emptyAry(ary);
+//another way thru prototype
+
+(function(){
+    'use strict';
+    function clear() {
+        var that = this;
+        while (that.length) {
+            that.pop();
+        }
+    }
+    Array.prototype.clear = clear;
+    console.dir(Array);
+    var ary = [23, 45, 67, 88];
+    ary.clear();
+    console.log(ary);
+})();
+//immutable function means cannot change
+
+Array.prototype.map=function map(nf){
+    var that=this;
+    var results=[];
+    that.forEach(function(elem){
+results.push(nf(elem));
+
+    });
+    return results;
+}
+var org=[2,5,3];
+var treeArray=org.map(function(x){
+    return x*3;
+});
+console.log(treeArray);
+</script>
+</body>
+</html>
